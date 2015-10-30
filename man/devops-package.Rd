@@ -16,7 +16,7 @@ Details
 
 
 \itemize{
-   \item{\code{\link[dataconr]{TODO}}: }{
+   \item{\code{\link[devops]{TODO}}: }{
 
      TODO
    }
@@ -27,7 +27,7 @@ Details
 
 
  \itemize{
-   \item{\code{\link[dataconr]{TODO}}: }{
+   \item{\code{\link[devops]{TODO}}: }{
 
      TODO
    }

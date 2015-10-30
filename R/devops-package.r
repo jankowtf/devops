@@ -2,7 +2,7 @@
 #' @section Classes and constructors:
 #'
 #' \itemize{
-#'    \item{\code{\link[dataconr]{TODO}}: }{
+#'    \item{\code{\link[devops]{TODO}}: }{
 #'
 #'      TODO
 #'    }
@@ -11,7 +11,7 @@
 #' @section Main functions/methods:
 #'
 #'  \itemize{
-#'    \item{\code{\link[dataconr]{TODO}}: }{
+#'    \item{\code{\link[devops]{TODO}}: }{
 #'
 #'      TODO
 #'    }

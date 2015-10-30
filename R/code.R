@@ -54,3 +54,27 @@ handleReadme <- function(...) {
   knitReadme()
   addTravisInfo(...)
 }
+
+#' @title
+#' Add components provided by devtools
+#'
+#' @description
+#' Calls certain functions of \code{\link{devtools}}.
+#'
+#' @details
+#' \itemize{
+#'  \item{\code{\link[devtools]{use_testthat}}}
+#'  \item{\code{\link[devtools]{use_data}}}
+#'  \item{\code{\link[devtools]{use_github}}}
+#'  \item{\code{\link[devtools]{use_build_ignore}}}
+#'  \item{\code{\link[devtools]{use_travis}}}
+#'  \item{\code{\link[devtools]{use_revdep}}}
+#'  \item{\code{\link[devtools]{use_package_doc}}}
+#'  \item{\code{\link[devtools]{use_vignette}}}
+#'  \item{\code{\link[devtools]{use_cran_badge}}}
+#' }
+#'
+#' @param inst A class instance.
+#' @return An error. See respective methods.
+#' @example inst/examples/example-addDevtoolsComponents.R
+#' @export

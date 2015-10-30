@@ -28,7 +28,7 @@ Interfaces for and implementations of data connectors
 
 ```r
 require("devtools")
-devtools::install_github("rappster/dataconr")
-require("dataconr")
+devtools::install_github("rappster/devops")
+require("devops")
 ```
 
