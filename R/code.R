@@ -15,9 +15,9 @@ addTravisInfo <- function(
 ) {
   travis <- list(
     status = paste0("[![Travis-CI Build Status](https://travis-ci.org/", repo,
-    ".svg?branch=master)](https://travis-ci.org/rappster/devops)"),
+      ".svg?branch=master)](https://travis-ci.org/rappster/devops)"),
     coverage = paste0("[![Coverage Status](https://img.shields.io/codecov/c/github/", repo,
-    "/master.svg)](https://codecov.io/github/rappster/devops?branch=master)")
+      "/master.svg)](https://codecov.io/github/rappster/devops?branch=master)")
   )
   readme <- readLines("README.md")
 
@@ -83,16 +83,16 @@ handleReadme <- function(...) {
 #' @example inst/examples/example-addDevtoolsComponents.R
 #' @export
 addDevtoolsComponents <- function() {
-  devtools::use_testthat()
-  devtools::use_data()
-  # devtools::use_github()
-  devtools::use_build_ignore()
-  # devtools::use_code_of_conduct()
-  devtools::use_travis()
-  devtools::use_coverage()
-  devtools::use_revdep()
-  devtools::use_package_doc()
-  devtools::use_vignette()
-  devtools::use_cran_badge()
+  try(devtools::use_testthat(), silent = TRUE)
+  try(devtools::use_data(), silent = TRUE)
+  # try(devtools::use_github(), silent = TRUE)
+  try(devtools::use_build_ignore(), silent = TRUE)
+  # try(devtools::use_code_of_conduct(), silent = TRUE)
+  try(devtools::use_travis(), silent = TRUE)
+  try(devtools::use_coverage(), silent = TRUE)
+  try(devtools::use_revdep(), silent = TRUE)
+  try(devtools::use_package_doc(), silent = TRUE)
+  try(devtools::use_vignette(), silent = TRUE)
+  try(devtools::use_cran_badge(), silent = TRUE)
   TRUE
 }
