@@ -201,3 +201,44 @@ addExample <- function(
   writeLines("## TODO", path)
   path
 }
+
+#' @title
+#' Add repository to .Rprofile file
+#'
+#' @description
+#' Add repository to .Rprofile file. Important for dependency checks.
+#'
+#' @details
+#' TODO
+#'
+#' @param repo \code{\link[base]{character}}.
+#'  Repository to add as named character vector.
+#' @return \code{TRUE}.
+#' @example inst/examples/example-addRepositoryToRprofile.R
+#' @importFrom stringr str_trim
+#' @export
+addRepositoryToRprofile <- function(
+  repo = c(CRAN = "http://cran.r-project.org")
+) {
+  expr <- substitute({
+    repos <- getOption("repos")
+    options(repos = c(repos, REPO))},
+    list(REPO = repo)
+  )
+  expr_dep <- stringr::str_trim(deparse(expr))
+  # gsub("^\\{$|^\\}$", "", expr_dep)
+  idx <- grep("^\\{$|^\\}$", expr_dep)
+  if (length(idx)) {
+    expr_dep <- expr_dep[-idx]
+  }
+
+  path <- ".Rprofile"
+  if (!file.exists(path)) {
+    writeLines(expr_dep, path)
+  } else {
+    src <- readLines(path)
+    src <- unique(append(src, expr_dep, length(src)))
+    writeLines(src, path)
+  }
+  TRUE
+}
