@@ -79,8 +79,7 @@ handleReadme <- function(...) {
 #'  \item{\code{\link[devtools]{use_cran_badge}}}
 #' }
 #'
-#' @param inst A class instance.
-#' @return An error. See respective methods.
+#' @return \code{TRUE}.
 #' @example inst/examples/example-addDevtoolsComponents.R
 #' @export
 addDevtoolsComponents <- function() {
@@ -95,4 +94,5 @@ addDevtoolsComponents <- function() {
   devtools::use_package_doc()
   devtools::use_vignette()
   devtools::use_cran_badge()
+  TRUE
 }

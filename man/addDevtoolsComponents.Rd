@@ -6,11 +6,8 @@
 \usage{
 addDevtoolsComponents()
 }
-\arguments{
-\item{inst}{A class instance.}
-}
 \value{
-An error. See respective methods.
+\code{TRUE}.
 }
 \description{
 Calls certain functions of \code{\link{devtools}}.
