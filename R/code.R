@@ -15,43 +15,83 @@ addTravisInfo <- function(
 ) {
   pkg <- as.list(read.dcf("DESCRIPTION")[1, ])$Package
   repo <- file.path(github_user, pkg)
-  travis <- list(
+  main <- list(
     status = paste0("[![Travis-CI Build Status](https://travis-ci.org/", repo,
       ".svg?branch=master)](https://travis-ci.org/", repo, ")"),
     coverage = paste0("[![Coverage Status](https://img.shields.io/codecov/c/github/", repo,
       "/master.svg)](https://codecov.io/github/", repo, "?branch=master)")
   )
-  readme <- readLines("README.md")
+
+  path <- "README.md"
+  src <- readLines(path)
 
   ## Status //
   field <- "status"
-  value <- travis[[field]]
-  idx <- grep(value, readme, fixed = TRUE)
+  value <- main[[field]]
+  idx <- grep(value, src, fixed = TRUE)
   if (!length(idx)) {
-    idx <- grep("---", readme, fixed = TRUE)[2] + 1
+    idx <- grep("---", src, fixed = TRUE)[2] + 1
     value <- c("", value, "")
+    src <- append(src, value, idx)
   } else {
-    idx <- idx + 1
+    src[idx] <- value
   }
-  readme <- append(readme, value, idx)
 
   ## Coverage //
   field <- "coverage"
-  value <- travis[[field]]
-  idx <- grep(value, readme, fixed = TRUE)
+  value <- main[[field]]
+  idx <- grep(value, src, fixed = TRUE)
   if (!length(idx)) {
-    idx <- grep(travis[["status"]], readme, fixed = TRUE)
+    idx <- grep(main[["status"]], src, fixed = TRUE)
     if (!length(idx)) {
-      idx <- grep("---", readme, fixed = TRUE)[2] + 1
+      idx <- grep("---", src, fixed = TRUE)[2] + 1
     } else {
       idx <- idx + 1
     }
     value <- c(value, "")
+    src <- append(src, value, idx)
   } else {
-    idx <- idx + 1
+    src[idx] <- value
   }
-  readme <- append(readme, value, idx)
-  writeLines(readme, "README.md")
+  writeLines(src, path)
+}
+
+#' @title Add CRAN badge info to README
+#' @description TODO
+#' @param pkg \code{\link[base]{character}}.
+#'  Package name.
+#' @example inst/examples/example-addCranInfo.R
+#' @export
+addCranInfo <- function(
+  pkg = as.list(read.dcf("DESCRIPTION")[1, ])$Package
+) {
+  main <- list(
+    cran = paste0("[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/",
+      pkg, ")](http://cran.r-project.org/package=", pkg, ")"),
+    coverage = paste0("[![Coverage Status](https://img.shields.io/codecov/c/github/", repo,
+      "/master.svg)](https://codecov.io/github/", repo, "?branch=master)")
+  )
+
+  path <- "README.md"
+  src <- readLines(path)
+
+  ## Coverage //
+  field <- "cran"
+  value <- main[[field]]
+  idx <- grep(value, src, fixed = TRUE)
+  if (!length(idx)) {
+    idx <- grep(main[["coverage"]], src, fixed = TRUE)
+    if (!length(idx)) {
+      idx <- grep("---", src, fixed = TRUE)[2] + 1
+    } else {
+      idx <- idx + 1
+    }
+    value <- c(value, "")
+    src <- append(src, value, idx)
+  } else {
+    src[idx] <- value
+  }
+  writeLines(src, path)
 }
 
 #' @title
@@ -67,7 +107,7 @@ addTravisInfo <- function(
 #' @example inst/examples/example-addTravisInfoToYaml.R
 #' @export
 addTravisInfoToYaml <- function() {
-  travis <- list(
+  main <- list(
     r_packages = c(
       "r_packages:",
       "  - covr"
@@ -82,7 +122,7 @@ addTravisInfoToYaml <- function() {
   checksum <- digest::digest(src)
 
   field <- "r_packages"
-  value <- travis[[field]]
+  value <- main[[field]]
   idx <- grep(value[1], src, fixed = TRUE)
   if (!length(idx)) {
     idx <- length(src)
@@ -90,7 +130,7 @@ addTravisInfoToYaml <- function() {
   }
 
   field <- "after_success"
-  value <- travis[[field]]
+  value <- main[[field]]
   idx <- grep(value[1], src, fixed = TRUE)
   if (!length(idx)) {
     idx <- length(src)
