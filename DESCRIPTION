@@ -10,10 +10,11 @@ Description: Functionality that supports systematic development or what is
 URL: https://github.com/rappster/devops
 License: GPL-3
 LazyData: TRUE
-Imports:
+Imports: 
     R6
-Suggests:
+Suggests: 
     knitr,
-    testthat
+    testthat,
+    rmarkdown
 RoxygenNote: 5.0.0
 VignetteBuilder: knitr
