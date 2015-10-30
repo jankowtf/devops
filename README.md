@@ -21,7 +21,7 @@ vignette: >
 
 # Description
 
-Interfaces for and implementations of data connectors
+Functionality that supports systematic development or what is largely understood by the term DevOps
 
 # Installation
 
