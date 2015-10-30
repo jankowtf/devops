@@ -1,7 +1,7 @@
 Package: devops
 Type: Package
 Title: DevOps functionality
-Version: 0.1
+Version: 0.1.1
 Date: 2015-10-30
 Authors@R: person("Janko", "Thyson", email = "janko.thyson@rappster.de",
     role = c("aut", "cre"))

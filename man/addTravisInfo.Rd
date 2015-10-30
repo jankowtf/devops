@@ -4,11 +4,11 @@
 \alias{addTravisInfo}
 \title{Add travisCI info to README}
 \usage{
-addTravisInfo(repo = "rappster/devops")
+addTravisInfo(github_user = "rappster")
 }
 \arguments{
-\item{repo}{\code{\link[base]{character}}.
-GitHub repository.}
+\item{github_user}{\code{\link[base]{character}}.
+GitHub user.}
 }
 \description{
 TODO

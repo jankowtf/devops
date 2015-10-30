@@ -7,17 +7,19 @@ knitReadme <- function() {
 
 #' @title Add travisCI info to README
 #' @description TODO
-#' @param repo \code{\link[base]{character}}.
-#'  GitHub repository.
+#' @param github_user \code{\link[base]{character}}.
+#'  GitHub user.
 #' @export
 addTravisInfo <- function(
-  repo = "rappster/devops"
+  github_user = "rappster"
 ) {
+  pkg <- as.list(read.dcf("DESCRIPTION")[1, ])$Package
+  repo <- file.path(github_user, pkg)
   travis <- list(
     status = paste0("[![Travis-CI Build Status](https://travis-ci.org/", repo,
-      ".svg?branch=master)](https://travis-ci.org/rappster/devops)"),
+      ".svg?branch=master)](https://travis-ci.org/", repo, ")"),
     coverage = paste0("[![Coverage Status](https://img.shields.io/codecov/c/github/", repo,
-      "/master.svg)](https://codecov.io/github/rappster/devops?branch=master)")
+      "/master.svg)](https://codecov.io/github/", repo, "?branch=master)")
   )
   readme <- readLines("README.md")
 
