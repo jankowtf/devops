@@ -52,6 +52,55 @@ addTravisInfo <- function(
   writeLines(readme, "README.md")
 }
 
+#' @title
+#' Add travisCI information to YAML file
+#'
+#' @description
+#' Add travisCI information to YAML file.
+#'
+#' @details
+#' TODO
+#'
+#' @return \code{TRUE}.
+#' @example inst/examples/example-addTravisInfoToYaml.R
+#' @export
+addTravisInfoToYaml <- function() {
+  travis <- list(
+    r_packages = c(
+      "r_packages:",
+      "  - covr"
+    ),
+    after_success = c(
+      "after_success:",
+      "  - Rscript -e 'covr::codecov()'"
+    )
+  )
+  path <- ".travis.yml"
+  src <- readLines(path)
+  checksum <- digest::digest(src)
+
+  field <- "r_packages"
+  value <- travis[[field]]
+  idx <- grep(value[1], src, fixed = TRUE)
+  if (!length(idx)) {
+    idx <- length(src)
+    src <- append(src, value, idx)
+  }
+
+  field <- "after_success"
+  value <- travis[[field]]
+  idx <- grep(value[1], src, fixed = TRUE)
+  if (!length(idx)) {
+    idx <- length(src)
+    src <- append(src, value, idx)
+  }
+  checksum_2 <- digest::digest(src)
+  if (checksum_2 != checksum) {
+    writeLines(src, path)
+  }
+  TRUE
+}
+
 #' @title Handle README tasks
 #' @description TODO
 #' @export
@@ -95,4 +144,48 @@ addDevtoolsComponents <- function() {
   try(devtools::use_vignette(), silent = TRUE)
   try(devtools::use_cran_badge(), silent = TRUE)
   TRUE
+}
+
+#' @title
+#' Add examples infrastructure
+#'
+#' @description
+#' Add examples infrastructure.
+#'
+#' @details
+#' TODO
+#'
+#' @return \code{\link[base]{character}}. Path to example directory.
+#' @example inst/examples/example-addExamples.R
+#' @export
+addExamples <- function(
+) {
+  path <- "inst/examples"
+  dir.create(path, recursive = TRUE, showWarnings = FALSE)
+  path
+}
+
+#' @title
+#' Add example
+#'
+#' @description
+#' Add example.
+#'
+#' @details
+#' TODO
+#'
+#' @param name \code{\link[base]{character}}.
+#'  Name for example file.
+#' @return \code{\link[base]{character}}. Path to example file.
+#' @example inst/examples/example-addExample.R
+#' @export
+addExample <- function(
+  name = character()
+) {
+  if (!length(name)) {
+    stop("addExample: please provide a name")
+  }
+  path <- file.path(addExamples(), sprintf("example-%s.R", name))
+  writeLines("## TODO", path)
+  path
 }
