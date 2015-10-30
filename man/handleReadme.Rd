@@ -6,6 +6,9 @@
 \usage{
 handleReadme(...)
 }
+\arguments{
+\item{...}{Further arguments to be passed to subsequent functions/methods.}
+}
 \description{
 TODO
 }

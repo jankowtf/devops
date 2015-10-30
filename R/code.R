@@ -103,6 +103,7 @@ addTravisInfoToYaml <- function() {
 
 #' @title Handle README tasks
 #' @description TODO
+#' @template threedots
 #' @export
 handleReadme <- function(...) {
   knitReadme()
