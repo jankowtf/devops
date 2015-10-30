@@ -70,9 +70,9 @@ handleReadme <- function(...) {
 #' \itemize{
 #'  \item{\code{\link[devtools]{use_testthat}}}
 #'  \item{\code{\link[devtools]{use_data}}}
-#'  \item{\code{\link[devtools]{use_github}}}
 #'  \item{\code{\link[devtools]{use_build_ignore}}}
 #'  \item{\code{\link[devtools]{use_travis}}}
+#'  \item{\code{\link[devtools]{use_coverage}}}
 #'  \item{\code{\link[devtools]{use_revdep}}}
 #'  \item{\code{\link[devtools]{use_package_doc}}}
 #'  \item{\code{\link[devtools]{use_vignette}}}
@@ -83,3 +83,16 @@ handleReadme <- function(...) {
 #' @return An error. See respective methods.
 #' @example inst/examples/example-addDevtoolsComponents.R
 #' @export
+addDevtoolsComponents <- function() {
+  devtools::use_testthat()
+  devtools::use_data()
+  # devtools::use_github()
+  devtools::use_build_ignore()
+  # devtools::use_code_of_conduct()
+  devtools::use_travis()
+  devtools::use_coverage()
+  devtools::use_revdep()
+  devtools::use_package_doc()
+  devtools::use_vignette()
+  devtools::use_cran_badge()
+}
