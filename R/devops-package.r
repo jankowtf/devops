@@ -28,6 +28,7 @@
 #'    \item{Package \code{devtools}: } {
 #'
 #'      \url{https://github.com/hadley/devtools/}
+#'      Blabla
 #'    }
 #' }
 #'
