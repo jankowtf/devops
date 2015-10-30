@@ -114,7 +114,7 @@ handleReadme <- function(...) {
 #' Add components provided by devtools
 #'
 #' @description
-#' Calls certain functions of \code{\link{devtools}}.
+#' Calls certain functions of \code{devtools}.
 #'
 #' @details
 #' \itemize{
@@ -131,6 +131,15 @@ handleReadme <- function(...) {
 #'
 #' @return \code{TRUE}.
 #' @example inst/examples/example-addDevtoolsComponents.R
+#' @importFrom devtools use_testthat
+#' @importFrom devtools use_data
+#' @importFrom devtools use_build_ignore
+#' @importFrom devtools use_travis
+#' @importFrom devtools use_coverage
+#' @importFrom devtools use_revdep
+#' @importFrom devtools use_package_doc
+#' @importFrom devtools use_vignette
+#' @importFrom devtools use_cran_badge
 #' @export
 addDevtoolsComponents <- function() {
   try(devtools::use_testthat(), silent = TRUE)

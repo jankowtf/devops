@@ -10,7 +10,7 @@ addDevtoolsComponents()
 \code{TRUE}.
 }
 \description{
-Calls certain functions of \code{\link{devtools}}.
+Calls certain functions of \code{devtools}.
 }
 \details{
 \itemize{
