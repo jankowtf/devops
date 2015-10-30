@@ -1,10 +1,14 @@
 #' @title Knit README
+#' @description TODO
 #' @export
 knitReadme <- function() {
   knitr::knit(input = "vignettes/README.Rmd", output = "README.md")
 }
 
 #' @title Add travisCI info to README
+#' @description TODO
+#' @param repo \code{\link[base]{character}}.
+#'  GitHub repository.
 #' @export
 addTravisInfo <- function(
   repo = "rappster/devops"
@@ -49,6 +53,7 @@ addTravisInfo <- function(
 }
 
 #' @title Handle README tasks
+#' @description TODO
 #' @export
 handleReadme <- function(...) {
   knitReadme()

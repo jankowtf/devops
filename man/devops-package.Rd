@@ -16,7 +16,7 @@ Details
 
 
 \itemize{
-   \item{\code{\link[devops]{TODO}}: }{
+   \item{\code{\link[devops]{devops}}: }{
 
      TODO
    }
@@ -27,7 +27,7 @@ Details
 
 
  \itemize{
-   \item{\code{\link[devops]{TODO}}: }{
+   \item{\code{\link[devops]{devops}}: }{
 
      TODO
    }

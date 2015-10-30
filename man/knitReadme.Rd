@@ -6,4 +6,7 @@
 \usage{
 knitReadme()
 }
+\description{
+TODO
+}
 

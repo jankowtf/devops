@@ -6,4 +6,11 @@
 \usage{
 addTravisInfo(repo = "rappster/devops")
 }
+\arguments{
+\item{repo}{\code{\link[base]{character}}.
+GitHub repository.}
+}
+\description{
+TODO
+}
 
