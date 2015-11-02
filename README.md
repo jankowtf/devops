@@ -3,10 +3,6 @@ title: "devops: README"
 author: "Janko Thyson"
 date: "2015-10-30"
 output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{README}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 
