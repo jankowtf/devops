@@ -282,3 +282,98 @@ addRepositoryToRprofile <- function(
   }
   TRUE
 }
+
+# addToTravis -------------------------------------------------------------
+
+#' @title
+#' Add travisCI information
+#'
+#' @description
+#' Adds information to file \code{.travis.yml}.
+#'
+#' @details
+#' TODO
+#'
+#' @param inst A class instance.
+#' @return See respective methods.
+#' @example inst/examples/example-addToTravisCi.R
+#' @seealso \url{http://docs.travis-ci.com/user/languages/r/}
+#' @export
+addToTravisCi <- function(what, ...) {
+  UseMethod("addToTravisCi", what)
+}
+
+#' @title
+#' Add travisCI information
+#'
+#' @description
+#' See generic: \code{\link[devops]{addToTravis}}
+#' Method for: \code{TravisCi}
+#'
+#' @details
+#' TODO
+#'
+#' @param what \code{TravisCi}.
+#' @return \code{TRUE}.
+#' @example inst/examples/example-addToTravisCi.R
+#' @importFrom yaml yaml.load_file
+#' @importFrom yaml as.yaml
+#' @export
+addToTravisCi.TravisCi <- function(what) {
+  path <- ".travis.yml"
+  yaml <- yaml::yaml.load_file(path)
+  update <- FALSE
+  for (value in names(what$values)) {
+    if (is.null(yaml[[value]])) {
+      yaml[[value]] <- what$values[[value]]
+      update <- TRUE
+    }
+  }
+  if (update) {
+    # path <- gsub("travis", "travis_test", path)
+    writeLines(yaml::as.yaml(yaml, omap = FALSE), path)
+  }
+  TRUE
+}
+
+#' @title
+#' Add travisCI information
+#'
+#' @description
+#' See generic: \code{\link[devops]{addToTravis}}
+#' Method for: \code{list}
+#'
+#' @details
+#' TODO
+#'
+#' @param what \code{list}.
+#' @return \code{TRUE}.
+#' @example inst/examples/example-addToTravisCi.R
+#' @export
+addToTravisCi.list <- function(what) {
+  what <- structure(list(values = what), class = "TravisCi")
+  addToTravisCi(what = what)
+}
+
+#' @title
+#' Add travisCI information
+#'
+#' @description
+#' See generic: \code{\link[devops]{addToTravis}}
+#' Method for: \code{TravisCi.Default}
+#'
+#' @details
+#' TODO
+#'
+#' @param what \code{TravisCi.Default}.
+#' @return \code{TRUE}.
+#' @example inst/examples/example-addToTravisCi.R
+#' @export
+addToTravisCi.TravisCi.Default <- function(what) {
+  what <- list(
+    cran = "http://cran.rstudio.com",
+    r_packages = list("covr"),
+    after_success = list("Rscript -e 'covr::codecov()'")
+  )
+  addToTravisCi(what = what)
+}

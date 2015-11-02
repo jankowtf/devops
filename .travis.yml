@@ -1,9 +1,9 @@
-# Sample .travis.yml for R projects
-
 language: r
-warnings_are_errors: true
+warnings_are_errors: yes
 sudo: required
+cran: http://cran.rstudio.com
 r_packages:
-  - covr
+- covr
 after_success:
-  - Rscript -e 'covr::codecov()'
+- Rscript -e 'covr::codecov()'
+
