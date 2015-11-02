@@ -29,6 +29,7 @@
 #' @template authors
 #' @template references
 #' @example inst/examples/example-Readme.R
+#' @include interface_classes.R
 #' @import R6
 #' @export
 Readme <- R6Class(
@@ -77,6 +78,8 @@ Readme <- R6Class(
       value <- gsub("\\$\\{github_user\\}", github_user, value)
       value <- gsub("\\$\\{package\\}", desc$package, value)
       value <- gsub("\\$\\{description\\}", desc$description, value)
+      value <- gsub("\\$\\{git_branch\\}",
+        getOption(desc$package)$git_branch, value)
       if (save) {
         writeLines(value, con = path)
       }

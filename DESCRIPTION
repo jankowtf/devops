@@ -1,7 +1,7 @@
 Package: devops
 Type: Package
 Title: DevOps functionality
-Version: 0.1.6
+Version: 0.1.7
 Date: 2015-11-02
 Authors@R: person("Janko", "Thyson", email = "janko.thyson@rappster.de",
     role = c("aut", "cre"))
@@ -14,6 +14,7 @@ Imports:
     devtools,
     digest,
     R6,
+    settings,
     stringr,
     yaml
 Suggests:
@@ -23,3 +24,10 @@ Suggests:
     rmarkdown
 RoxygenNote: 5.0.0
 VignetteBuilder: knitr
+Collate:
+    'interface_classes.R'
+    'base_classes.R'
+    'code.R'
+    'devops-package.r'
+    'options.R'
+    'validate.R'

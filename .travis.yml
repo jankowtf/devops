@@ -3,7 +3,13 @@ warnings_are_errors: yes
 sudo: required
 cran: http://cran.rstudio.com
 r_packages:
-- covr
+  - covr
 after_success:
-- Rscript -e 'covr::codecov()'
+  - Rscript -e 'covr::codecov()'
+r_github_packages:
+  - rappster/testthelper
 
+addons:
+  apt:
+    packages:
+    - qpdf

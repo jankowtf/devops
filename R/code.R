@@ -448,3 +448,12 @@ addReadme.default <- function(
     FALSE
   }
 }
+
+# .onLoad -----------------------------------------------------------------
+
+.onLoad <- function(libname, pkgname) {
+  options(list(devops = list(
+    github_user = NULL,
+    github = "master"))
+  )
+}
