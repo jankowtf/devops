@@ -74,7 +74,14 @@ Readme <- R6Class(
       path = self$path
     ) {
       value <- private$loadTemplate()
-      desc = as.package(".")
+      desc <- if (basename(getwd()) == "devops") {
+        as.package(".")
+      } else {
+        tmp <- packageDescription("devops")
+        names(tmp) <- tolower(names(tmp))
+        tmp
+      }
+
       value <- gsub("\\$\\{github_user\\}", github_user, value)
       value <- gsub("\\$\\{package\\}", desc$package, value)
       value <- gsub("\\$\\{description\\}", desc$description, value)

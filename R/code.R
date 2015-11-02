@@ -434,9 +434,10 @@ addReadme <- function(what = NULL, ...) {
 addReadme.default <- function(
   what,
   overwrite = FALSE,
-  github_user = getOption(as.package(".")$package)$github_user,
+  github_user = getOption("devops")$github_user,
   ...
 ) {
+  print(github_user)
   if (is.null(github_user)) {
     stop("Empty value: github_user. Please set options(\"devops\")$github_user")
   }
@@ -452,8 +453,8 @@ addReadme.default <- function(
 # .onLoad -----------------------------------------------------------------
 
 .onLoad <- function(libname, pkgname) {
-  options(list(devops = list(
-    github_user = NULL,
-    github = "master"))
-  )
+  opts <- new.env()
+  opts$github_user <- character()
+  opts$git_branch <- "master"
+  options("devops" = opts)
 }

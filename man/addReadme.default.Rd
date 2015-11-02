@@ -5,7 +5,7 @@
 \title{Add README Information}
 \usage{
 \method{addReadme}{default}(what, overwrite = FALSE,
-  github_user = getOption(as.package(".")$package)$github_user, ...)
+  github_user = getOption("devops")$github_user, ...)
 }
 \arguments{
 \item{what}{\code{ANY}.}
