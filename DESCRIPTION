@@ -1,7 +1,7 @@
 Package: devops
 Type: Package
 Title: DevOps functionality
-Version: 0.1.3
+Version: 0.1.6
 Date: 2015-11-02
 Authors@R: person("Janko", "Thyson", email = "janko.thyson@rappster.de",
     role = c("aut", "cre"))
@@ -13,10 +13,12 @@ LazyData: TRUE
 Imports:
     devtools,
     digest,
+    R6,
     stringr,
     yaml
 Suggests:
     knitr,
+    testhelper,
     testthat,
     rmarkdown
 RoxygenNote: 5.0.0

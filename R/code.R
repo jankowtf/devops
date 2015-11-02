@@ -283,7 +283,7 @@ addRepositoryToRprofile <- function(
   TRUE
 }
 
-# addToTravis -------------------------------------------------------------
+# addTravisCi -------------------------------------------------------------
 
 #' @title
 #' Add travisCI information
@@ -295,32 +295,41 @@ addRepositoryToRprofile <- function(
 #' TODO
 #'
 #' @param what A class instance.
+#' @template threedots
 #' @return See respective methods.
-#' @example inst/examples/example-addToTravisCi.R
+#' @example inst/examples/example-addTravisCi.R
 #' @seealso \url{http://docs.travis-ci.com/user/languages/r/}
 #' @export
-addToTravisCi <- function(what) {
-  UseMethod("addToTravisCi", what)
+addTravisCi <- function(what, ...) {
+  UseMethod("addTravisCi", what)
 }
 
 #' @title
 #' Add travisCI information
 #'
 #' @description
-#' See generic: \code{\link[devops]{addToTravisCi}}
+#' See generic: \code{\link[devops]{addTravisCi}}
 #' Method for: \code{TravisCi}
 #'
 #' @details
 #' TODO
 #'
 #' @param what \code{TravisCi}.
-#' @return \code{TRUE}.
-#' @example inst/examples/example-addToTravisCi.R
+#' @param path \code{\link[base]{character}}.
+#' @param save \code{\link[base]{logical}}.
+#' @template threedots
+#' @return \code{\link[base]{character}}.
+#' @example inst/examples/example-addTravisCi.R
 #' @importFrom yaml yaml.load_file
 #' @importFrom yaml as.yaml
 #' @export
-addToTravisCi.TravisCi <- function(what) {
-  path <- ".travis.yml"
+addTravisCi.TravisCi <- function(
+  what,
+  path = ".travis.yml",
+  save = TRUE,
+  ...
+) {
+  # path <- what$path
   yaml <- yaml::yaml.load_file(path)
   update <- FALSE
   for (value in names(what$values)) {
@@ -330,50 +339,112 @@ addToTravisCi.TravisCi <- function(what) {
     }
   }
   if (update) {
-    # path <- gsub("travis", "travis_test", path)
-    writeLines(yaml::as.yaml(yaml, omap = FALSE), path)
+    yaml <- yaml::as.yaml(yaml)
+    if (save) {
+      writeLines(yaml, path)
+    }
   }
-  TRUE
+  yaml
 }
 
 #' @title
 #' Add travisCI information
 #'
 #' @description
-#' See generic: \code{\link[devops]{addToTravisCi}}
+#' See generic: \code{\link[devops]{addTravisCi}}
 #' Method for: \code{list}
 #'
 #' @details
 #' TODO
 #'
 #' @param what \code{list}.
+#' @template threedots
 #' @return \code{TRUE}.
-#' @example inst/examples/example-addToTravisCi.R
+#' @example inst/examples/example-addTravisCi.R
 #' @export
-addToTravisCi.list <- function(what) {
+addTravisCi.list <- function(what, ...) {
   what <- structure(list(values = what), class = "TravisCi")
-  addToTravisCi(what = what)
+  addTravisCi(what = what, ...)
 }
 
 #' @title
 #' Add travisCI information
 #'
 #' @description
-#' See generic: \code{\link[devops]{addToTravisCi}}
+#' See generic: \code{\link[devops]{addTravisCi}}
 #' Method for: \code{TravisCi.Default}
 #'
 #' @details
 #' TODO
 #'
 #' @param what \code{TravisCi.Default}.
+#' @template threedots
 #' @return \code{TRUE}.
-#' @example inst/examples/example-addToTravisCi.R
+#' @example inst/examples/example-addTravisCi.R
 #' @export
-addToTravisCi.TravisCi.Default <- function(what) {
+addTravisCi.TravisCi.Default <- function(what, ...) {
   what <- list(
     cran = "http://cran.rstudio.com",
     r_packages = list("covr"),
     after_success = list("Rscript -e 'covr::codecov()'")
   )
-  addToTravisCi(what = what)
+  addTravisCi(what = what)
+}
+
+
+# addReadme ---------------------------------------------------------------
+
+#' @title
+#' Add README Information
+#'
+#' @description
+#' Adds README information to files \code{vignettes/README.Rmd} and/or
+#' \code{README.md}.
+#'
+#' @details
+#' TODO
+#'
+#' @param what A class instance.
+#' @template threedots
+#' @return See respective methods.
+#' @example inst/examples/example-addReadme.R
+#' @export
+addReadme <- function(what = NULL, ...) {
+  UseMethod("addReadme", what)
+}
+
+#' @title
+#' Add README Information
+#'
+#' @description
+#' See generic: \code{\link[devops]{addTravisCi}}
+#' Method for: \code{Readme.Default}
+#'
+#' @details
+#' TODO
+#'
+#' @param what \code{ANY}.
+#' @param overwrite \code{\link[base]{logical}}
+#' @param github_user \code{\link[base]{character}}
+#' @template threedots
+#' @return \code{TRUE/FALSE}.
+#' @example inst/examples/example-addReadme.R
+#' @importFrom devtools as.package
+#' @export
+addReadme.default <- function(
+  what,
+  overwrite = FALSE,
+  github_user = getOption(as.package(".")$package)$github_user,
+  ...
+) {
+  if (is.null(github_user)) {
+    stop("Empty value: github_user. Please set options(\"devops\")$github_user")
+  }
+  inst <- Readme$new()
+  if (!file.exists(inst$path) || overwrite) {
+    inst$createTemplate(github_user = github_user, save = TRUE)
+    TRUE
+  } else {
+    FALSE
+  }
 }

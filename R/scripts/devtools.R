@@ -9,3 +9,8 @@ devtools::use_revdep()
 devtools::use_package_doc()
 devtools::use_vignette()
 devtools::use_cran_badge()
+
+
+library(testthat)
+library(devops)
+test_check("devops")
