@@ -1,7 +1,6 @@
 language: r
 warnings_are_errors: yes
 sudo: required
-cran: https://cran.rstudio.com
 r_packages:
 - covr
 after_success:
