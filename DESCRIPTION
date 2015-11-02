@@ -1,8 +1,8 @@
 Package: devops
 Type: Package
 Title: DevOps functionality
-Version: 0.1.2
-Date: 2015-10-30
+Version: 0.1.3
+Date: 2015-11-02
 Authors@R: person("Janko", "Thyson", email = "janko.thyson@rappster.de",
     role = c("aut", "cre"))
 Description: Functionality that supports systematic development or what is
@@ -10,11 +10,14 @@ Description: Functionality that supports systematic development or what is
 URL: https://github.com/rappster/devops
 License: GPL-3
 LazyData: TRUE
+Imports:
+    devtools,
+    digest,
+    stringr,
+    yaml
 Suggests:
     knitr,
     testthat,
-    rmarkdown,
-    stringr,
-    yaml
+    rmarkdown
 RoxygenNote: 5.0.0
 VignetteBuilder: knitr

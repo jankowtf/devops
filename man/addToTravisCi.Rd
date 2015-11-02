@@ -4,10 +4,10 @@
 \alias{addToTravisCi}
 \title{Add travisCI information}
 \usage{
-addToTravisCi(what, ...)
+addToTravisCi(what)
 }
 \arguments{
-\item{inst}{A class instance.}
+\item{what}{A class instance.}
 }
 \value{
 See respective methods.

@@ -294,12 +294,12 @@ addRepositoryToRprofile <- function(
 #' @details
 #' TODO
 #'
-#' @param inst A class instance.
+#' @param what A class instance.
 #' @return See respective methods.
 #' @example inst/examples/example-addToTravisCi.R
 #' @seealso \url{http://docs.travis-ci.com/user/languages/r/}
 #' @export
-addToTravisCi <- function(what, ...) {
+addToTravisCi <- function(what) {
   UseMethod("addToTravisCi", what)
 }
 
@@ -307,7 +307,7 @@ addToTravisCi <- function(what, ...) {
 #' Add travisCI information
 #'
 #' @description
-#' See generic: \code{\link[devops]{addToTravis}}
+#' See generic: \code{\link[devops]{addToTravisCi}}
 #' Method for: \code{TravisCi}
 #'
 #' @details
@@ -340,7 +340,7 @@ addToTravisCi.TravisCi <- function(what) {
 #' Add travisCI information
 #'
 #' @description
-#' See generic: \code{\link[devops]{addToTravis}}
+#' See generic: \code{\link[devops]{addToTravisCi}}
 #' Method for: \code{list}
 #'
 #' @details
@@ -359,7 +359,7 @@ addToTravisCi.list <- function(what) {
 #' Add travisCI information
 #'
 #' @description
-#' See generic: \code{\link[devops]{addToTravis}}
+#' See generic: \code{\link[devops]{addToTravisCi}}
 #' Method for: \code{TravisCi.Default}
 #'
 #' @details

@@ -13,7 +13,7 @@
 \code{TRUE}.
 }
 \description{
-See generic: \code{\link[devops]{addToTravis}}
+See generic: \code{\link[devops]{addToTravisCi}}
 Method for: \code{TravisCi.Default}
 }
 \details{
